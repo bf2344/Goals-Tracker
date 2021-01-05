@@ -52,11 +52,11 @@ class GraphWidget extends Component {
         }
     }
 
-    //Convert the data received in props to a format the graphing component likes
+   
     generateDatasets(props) {
         let datasets = [];
 
-        //Create a dataset object that Chart.js to understand
+       
         props.data.forEach(function (data) {
             datasets.push({
                 label: data.label,
@@ -70,7 +70,7 @@ class GraphWidget extends Component {
             });
         }, this);
 
-        //Let the React wrapper for Chart.js update the view
+       
         this.setState({
             values: {
                 datasets
