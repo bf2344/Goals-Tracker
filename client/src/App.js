@@ -9,8 +9,8 @@ import './App.css';
 function App () {
         return (
             <div className="App">
-                <LoginButton />
-                <LogoutButton />
+                {/* <LoginButton />
+                <LogoutButton /> */}
                 <ListWidgetContainer href="http://localhost:3001/stats/top" heading="All Users Goals" rowspan={3} />
                 <NumberWidgetContainer href="http://localhost:3001/goals/open" heading="Active Goals" />
                 <GraphWidgetContainer href="http://localhost:3001/goals/progression" heading="Goals Achieved Over Time" colspan={2} rowspan={2} />
