@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import NumberWidgetContainer from './components/NumberWidgetContainer/index';
 import ListWidgetContainer from './components/ListWidgetContainer/index';
-import GraphWidgetContainer from './components/GraphWidgetContainer/';
-
-// Add in styles
+import GraphWidgetContainer from './components/GraphWidgetContainer';
+import LoginButton from "./components/LoginButton"
+import LogoutButton from "./components/LogoutButton"
 import './App.css';
 
-class App extends Component {
-    render() {
+function App () {
         return (
             <div className="App">
                 <ListWidgetContainer href="http://localhost:3001/api/stats/top" heading="All Users Goals" rowspan={3} />
@@ -20,6 +19,5 @@ class App extends Component {
             </div>
         );
     }
-}
 
 export default App;
