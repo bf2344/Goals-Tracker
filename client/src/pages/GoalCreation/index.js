@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Form, FormGroup, Label, Input, FormText, Container, Row, Col } from 'reactstrap';
+import { useHistory } from 'react-router-dom';
+import { Form, FormGroup, Label, Input, FormText, Container, Row, Col, Button } from 'reactstrap';
 import './index.css';
+import GoalCreationModal from '../../components/Modal/';
 
 const GoalCreation = () => {
   const [inputValues, setInputValues] = useState({
-    name: '',
+    title: '',
     description: '',
     date: () => new Date(),
     color: '',
@@ -12,6 +14,23 @@ const GoalCreation = () => {
     upload: '',
     checked: false
   })
+  const [showModal, setShowModal] = useState(false)
+  const history = useHistory()
+
+  const handleGoalSubmit = () => {
+    fetch('/api/user/goal/add', {
+      method: 'POST',
+      body: {
+        ...inputValues,
+        // userEmail: user.email
+      }
+    }).then(res => {
+      setShowModal(true)
+      setTimeout(() => {
+        history.push('/')
+      }, 2000);
+    })
+  }
 
 
   const handleInputChange = (name, value) => {
@@ -25,13 +44,18 @@ const GoalCreation = () => {
   return (
     <Container>
       <Row>
+        {showModal &&
+          <Col sm={12}>
+            <GoalCreationModal showModal={showModal} className={showModal ? "show" : "hide"} buttonLabel="X" />
+          </Col>
+        }
         <Col sm={12} md={9} lg={6} className='form-column'>
           <Form>
             <FormGroup>
               <Label for="exampleName">Goal Name</Label>
               <Input
                 type="name"
-                name="name"
+                name="title"
                 id="exampleEmail"
                 placeholder="with a placeholder"
                 onChange={(e) => handleInputChange(e.currentTarget.name, e.currentTarget.value)}
@@ -42,8 +66,8 @@ const GoalCreation = () => {
               <Input
                 type="textarea"
                 name="description"
-                id="exampleText" 
-                onChange={(e) => handleInputChange(e.currentTarget.name, e.currentTarget.value)}/>
+                id="exampleText"
+                onChange={(e) => handleInputChange(e.currentTarget.name, e.currentTarget.value)} />
             </FormGroup>
             <FormGroup>
               <Label for="exampleDate">Goal End Date</Label>
@@ -108,10 +132,11 @@ const GoalCreation = () => {
             <FormGroup check>
               <Label check>
                 <Input
-                  type="checkbox" 
-                  onClick={()=> setInputValues({...inputValues, checked: !inputValues.checked})}/> A Check Box
+                  type="checkbox"
+                  onClick={() => setInputValues({ ...inputValues, checked: !inputValues.checked })} /> A Check Box
               </Label>
             </FormGroup>
+            <Button onClick={() => handleGoalSubmit()}>Submit</Button>
           </Form>
         </Col>
       </Row>

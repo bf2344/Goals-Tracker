@@ -1,3 +1,11 @@
 .form-column {
   background-color: #1ee6be;
 }
+
+.show{
+  display: block;
+} 
+
+.hide{
+  display: none;
+}
