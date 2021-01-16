@@ -12,7 +12,8 @@ const GoalCreation = () => {
     color: '',
     popular: '',
     upload: '',
-    checked: false
+    checked: false,
+    goalUpdates: []
   })
   
   const [showModal, setShowModal] = useState(false)
