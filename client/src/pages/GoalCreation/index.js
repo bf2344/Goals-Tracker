@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, FormText, Container, Row, Col, Button } from 'reactstrap';
 import './index.css';
-import GoalCreationModal from '../../components/Modal/';
+import GoalCreationModal from '../../components/Modal';
 
 const GoalCreation = () => {
   const [inputValues, setInputValues] = useState({
@@ -12,8 +12,10 @@ const GoalCreation = () => {
     color: '',
     popular: '',
     upload: '',
-    checked: false
+    checked: false,
+    goalUpdates: []
   })
+  
   const [showModal, setShowModal] = useState(false)
   const history = useHistory()
 
@@ -31,7 +33,6 @@ const GoalCreation = () => {
       }, 2000);
     })
   }
-
 
   const handleInputChange = (name, value) => {
     setInputValues({ ...inputValues, [name]: value })

@@ -5,7 +5,8 @@ import ListWidgetContainer from './components/ListWidgetContainer/index';
 import GraphWidgetContainer from './components/GraphWidgetContainer';
 import LoginButton from "./components/LoginButton"
 import LogoutButton from "./components/LogoutButton"
-import GoalCreation from './pages/GoalCreation/index';
+import GoalCreation from './pages/GoalCreation';
+import GoalUpdate from './pages/GoalUpdate'
 import './App.css';
 
 function App() {
@@ -14,6 +15,9 @@ function App() {
       <Router>
         <Route path='/goal-creation'>
           <GoalCreation />
+        </Route>
+        <Route path='/goal-update/:id'>
+          <GoalUpdate />
         </Route>
         <Route exact path='/'>
           <div className="Home">
