@@ -21,6 +21,7 @@
     "start:dev": "concurrently \"nodemon server.js --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "build": "cd client && npm run build",
+    "seed": "node db/seed.js",
     "serve": "nodemon server.js",
     "serve-delayed": "node server.js delayresponse"
   }
