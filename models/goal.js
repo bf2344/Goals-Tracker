@@ -25,16 +25,8 @@ const GoalsModel = new Schema({
   },
   goalUpdates: [
     {
-      updatedAt: {
-        type: Date,
-        default: ()=> new Date()
-      },
-      progress: {
-        type: Number
-      },
-      note: {
-        type: String
-      }
+      type: Schema.Types.ObjectId,
+      ref: 'GoalUpdates'
     }
   ]
 })
