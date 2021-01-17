@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, FormGroup, Label, Input, FormText, Container, Row, Col, Button } from 'reactstrap';
 import './index.css';
-import GoalCreationModal from '../../components/Modal';
+import GoalModal from '../../components/GoalModal';
 
 const GoalCreation = () => {
   const [inputValues, setInputValues] = useState({
@@ -20,19 +20,32 @@ const GoalCreation = () => {
   const history = useHistory()
 
   const handleGoalSubmit = () => {
+    console.log("front end submit log")
     fetch('/api/user/goal/add', {
       method: 'POST',
-      body: {
-        ...inputValues,
-        // userEmail: user.email
-      }
+      body: JSON.stringify(inputValues),
+      headers: { 
+        "Content-type": "application/json"
+    } 
     }).then(res => {
-      setShowModal(true)
-      setTimeout(() => {
-        history.push('/')
-      }, 2000);
+      if(res){
+        // console.log(res.status === 200)
+        setShowModal(true)
+        setTimeout(() => {
+          history.push('/')
+        }, 2000);
+      } else {
+        console.log(res)
+      }
     })
   }
+
+  useEffect(()=>{
+    fetch('api/user/goal/get')
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
+  }, [])
 
   const handleInputChange = (name, value) => {
     setInputValues({ ...inputValues, [name]: value })
@@ -47,7 +60,7 @@ const GoalCreation = () => {
       <Row>
         {showModal &&
           <Col sm={12}>
-            <GoalCreationModal showModal={showModal} className={showModal ? "show" : "hide"} buttonLabel="X" />
+            <GoalModal showModal={showModal} className={showModal ? "show" : "hide"} buttonLabel="X" status="created" />
           </Col>
         }
         <Col sm={12} md={9} lg={6} className='form-column'>

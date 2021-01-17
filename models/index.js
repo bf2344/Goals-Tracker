@@ -1,3 +1,4 @@
 module.exports = {
-  Goals : require('./goal-model')
+  Goals : require('./goal'),
+  GoalUpdates: require('./goal-updates')
 }

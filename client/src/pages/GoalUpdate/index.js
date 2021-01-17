@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Form, FormGroup, Label, Input, Container, Row, Col, Button } from 'reactstrap';
 import { useParams, useHistory } from "react-router-dom";
+import GoalModal from '../../components/GoalModal';
 import './index.css';
 
 const GoalUpdate = () => {
+  const [showModal, setShowModal] = useState(false)
   const [goalData, setGoalData] = useState();
   const [updateData, setUpdateData] = useState({
     progress: 0,
@@ -16,14 +18,13 @@ const GoalUpdate = () => {
     fetch(`/api/user/goal/get/${id}`)
       .then(res => res.json()).then(data => setGoalData(data))
       .catch(err => console.log(err))
-  }, []);
+  }, [id]);
 
   const handleInputChange = (name, value) => {
     setUpdateData({ ...updateData, [name]: value });
   };
 
-  const handleSubmit = (e) =>{
-    e.preventDefault();
+  const handleSubmit = () =>{
     fetch(`/api/user/goal/update/${id}`, {
       method: 'PUT',
       headers: {
@@ -32,9 +33,15 @@ const GoalUpdate = () => {
       body: JSON.stringify(updateData)
     })
       .then(res => {
-        setTimeout(()=>{
-          history.push('/')
-        }, 2000)
+        console.log(res.status)
+        if(res.status == 200){
+          setShowModal(true)
+          setTimeout(()=>{
+            history.push('/')
+          }, 2000)
+        } else{
+          console.log("something went wrong with the update")
+        }
       })
       .catch(err => console.log(err));
   };
@@ -44,8 +51,13 @@ const GoalUpdate = () => {
   return (
     <Container>
       <Row>
+      {showModal &&
+          <Col sm={12}>
+            <GoalModal showModal={showModal} className={showModal ? "show" : "hide"} buttonLabel="X" status="updated" />
+          </Col>
+        }
         <Col sm={12} md={9} lg={6} style={{ backgroundColor }}>
-          <Form onSubmit={(e)=> handleSubmit(e.currentTarget)}>
+          <Form>
             {goalData &&
               <h2>{goalData.title}</h2>
             }
@@ -99,7 +111,7 @@ const GoalUpdate = () => {
             </FormGroup>
             <FormGroup check row>
               <Col sm={{ size: 10, offset: 2 }}>
-                <Button>Submit</Button>
+                <Button  onClick={()=> handleSubmit()}>Submit</Button>
               </Col>
             </FormGroup>
           </Form>
