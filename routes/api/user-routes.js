@@ -7,5 +7,12 @@ router.get('/:email', ({params}, res) => {
     .catch(err => console.log(err))
 })
 
+router.post('/add', (req, res) => {
+  console.log(req.body)
+  User.create(req.body)
+    .then(response => res.status(200).json(response))
+    .catch(err => console.log(err))
+})
+
 
 module.exports = router;

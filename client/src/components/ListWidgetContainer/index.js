@@ -1,49 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import ListWidget from '../ListWidget/index';
 
-// const ListWidgetContainer = props =>{
-//   const [info, setInfo] = useState({
-//     loading: true,
-//     values: []
-//   });
-
-//   const getData = ()=> {
-//     // Tell the Widget component we're currently loading
-//     setInfo({ loading: true });
-
-//     // const proxyurl = "https://cors-anywhere.herokuapp.com/";
-//     const url = props.href;
-//     return fetch(url)
-//       .then(response => {
-//         console.log(response)
-//         response.json()
-//       })
-//       .then(res => {
-//         console.log("shit")
-//         // Update state with data
-//         console.log(res)
-//         // setInfo({ loading: false, values: res.data });
-//       })
-//       .catch(error => {
-//         // At least tell the Widget component we have stopped loading
-//         console.log(error);
-//         setInfo({ loading: false });
-//       });
-//   }
-//   useEffect(()=>{
-//     getData().then(_ => {
-//       // Re-fetch every minute
-//       setInfo({...info, interval: setInterval(getData, 60000)})
-//     });
-//   }, []);
-
-
-//   return (
-//     // Render the list widget
-//     <ListWidget heading={props.heading} colspan={props.colspan} rowspan={props.rowspan} listItems={info.values} loading={info.loading} />
-//   );
-// }
-
 class ListWidgetContainer extends Component {
   constructor() {
     super();
