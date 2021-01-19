@@ -19,7 +19,7 @@ const GoalsModel = new Schema({
   popular: {
     type: String
   },
-  checked: {
+  highPriority: {
     type: Boolean,
     default: false
   },

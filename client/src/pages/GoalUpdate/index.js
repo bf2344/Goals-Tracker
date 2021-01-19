@@ -15,7 +15,7 @@ const GoalUpdate = () => {
   const history = useHistory();
 
   useEffect(() => {
-    fetch(`/api/user/goal/get/${id}`)
+    fetch(`/api/goal/get/${id}`)
       .then(res => res.json()).then(data => setGoalData(data))
       .catch(err => console.log(err))
   }, [id]);
@@ -25,7 +25,7 @@ const GoalUpdate = () => {
   };
 
   const handleSubmit = () =>{
-    fetch(`/api/user/goal/update/${id}`, {
+    fetch(`/api/goal/update/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
