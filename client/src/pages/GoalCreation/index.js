@@ -12,7 +12,7 @@ const GoalCreation = () => {
     color: '',
     popular: '',
     upload: '',
-    checked: false,
+    highPriority: false,
     goalUpdates: []
   })
   
@@ -21,7 +21,7 @@ const GoalCreation = () => {
 
   const handleGoalSubmit = () => {
     console.log("front end submit log")
-    fetch('/api/user/goal/add', {
+    fetch('/api/goal/add', {
       method: 'POST',
       body: JSON.stringify(inputValues),
       headers: { 
@@ -147,7 +147,7 @@ const GoalCreation = () => {
               <Label check>
                 <Input
                   type="checkbox"
-                  onClick={() => setInputValues({ ...inputValues, checked: !inputValues.checked })} /> A Check Box
+                  onClick={() => setInputValues({ ...inputValues, highPriority: !inputValues.checked })} /> High priority goal?
               </Label>
             </FormGroup>
             <Button onClick={() => handleGoalSubmit()}>Submit</Button>

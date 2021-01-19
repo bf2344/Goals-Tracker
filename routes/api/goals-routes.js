@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 router.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   if(process.argv.includes("delayresponse")) {
       setTimeout(function(){
           next();

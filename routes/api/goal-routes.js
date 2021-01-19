@@ -1,21 +1,14 @@
 const router = require('express').Router();
 const { Goals, GoalUpdates } = require('../../models');
 
-router.get('/goal/get', (req, res) => {
-  console.log("Hit back end get route for all goals")
-  Goals.findAll({})
+router.get('/get', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  Goals.find({})
     .populate("goalUpdates")
-    .then(response => res.status(200).json(response))
+    .then(data => res.status(200).json(data))
     .catch(err => console.log(err))
 })
-
-router.post('/goal/add', ({ body }, res) => {
-  Goals.create(body)
-    .then(response => res.status(200).json(response))
-    .catch(err => console.log(err))
-})
-
-router.get('/goal/get/:id', ({ params }, res) => {
+router.get('/get/:id', ({ params }, res) => {
   Goals.findOne({
       _id: params.id
   })
@@ -23,6 +16,13 @@ router.get('/goal/get/:id', ({ params }, res) => {
     .then(response => res.status(200).json(response))
     .catch(err => console.log(err))
 })
+
+router.post('/add', ({ body }, res) => {
+  Goals.create(body)
+    .then(response => res.status(200).json(response))
+    .catch(err => console.log(err))
+})
+
 
 router.put('/goal/update/:id', ({ params, body }, res) => {
   GoalUpdates.create(body)
