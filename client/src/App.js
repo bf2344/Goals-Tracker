@@ -6,6 +6,7 @@ import ListWidgetContainer from './components/ListWidgetContainer/index';
 import GraphWidgetContainer from './components/GraphWidgetContainer';
 import LoginButton from "./components/LoginButton"
 import LogoutButton from "./components/LogoutButton"
+import Profile from "./components/Profile"
 import GoalCreation from './pages/GoalCreation';
 import GoalUpdate from './pages/GoalUpdate';
 import UserContext from './utils/UserContext';
@@ -20,8 +21,30 @@ function App() {
     fetch(`/api/user/${user.email}`)
       .then(res => res.json())
       .then(data => setUserData(data))
+      .then(() => {
+        if(userData === null) {
+          console.log("fuck you")
+          postData()
+        }
+      })
       .catch(err => console.log(err))
   }}, [user]);
+
+  
+
+  
+
+  const postData = () => {
+    fetch('/api/user/add', {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: { 
+        "Content-type": "application/json"
+    } 
+  })
+  .catch(err => console.log(err))
+  }
+
 
   return (
     <div className="App">
@@ -35,8 +58,9 @@ function App() {
         </Route>
         <Route exact path='/'>
           <div className="Home">
-            {/* <LoginButton />
-                <LogoutButton /> */}
+            <LoginButton />
+                <LogoutButton />
+                <Profile />
             <ListWidgetContainer href="http://localhost:3001/api/stats/top" heading="All Users Goals" rowspan={3} />
             <NumberWidgetContainer href="http://localhost:3001/api/goals/open" heading="Active Goals" />
             <GraphWidgetContainer href="http://localhost:3001/api/goals/progression" heading="Goals Achieved Over Time" colspan={2} rowspan={2} />
