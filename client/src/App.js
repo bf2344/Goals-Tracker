@@ -22,7 +22,7 @@ function App() {
       .then(res => res.json())
       .then(data => setUserData(data))
       .then(() => {
-        if(userData === null) {
+        if(!userData) {
           console.log("fuck you")
           postData()
         }
