@@ -16,51 +16,49 @@ function App() {
   const [userData, setUserData] = useState();
   const { user } = useAuth0();
 
-  useEffect(()=>{
-    if(user){
+  const getUser = () => {
     fetch(`/api/user/${user.email}`)
       .then(res => res.json())
       .then(data => setUserData(data))
-      .then(() => {
-        if(!userData) {
-          console.log("fuck you")
-          postData()
-        }
-      })
       .catch(err => console.log(err))
-  }}, [user]);
-
-  
-
-  
+  }
 
   const postData = () => {
     fetch('/api/user/add', {
       method: 'POST',
       body: JSON.stringify(user),
-      headers: { 
+      headers: {
         "Content-type": "application/json"
-    } 
-  })
-  .catch(err => console.log(err))
+      }
+    })
+      .catch(err => console.log(err))
   }
 
+  useEffect(async () => {
+    if (user) {
+      await getUser()
+      if (!userData) {
+        await postData()
+        await getUser()
+      }
+    }
+}, [user]);
 
-  return (
-    <div className="App">
-      <UserContext.Provider value={userData}>
+return (
+  <div className="App">
+    <UserContext.Provider value={userData}>
       <Router>
-        <Route path='/goal-creation'>
+        <Route path='/goal-creation/:userId'>
           <GoalCreation />
         </Route>
-        <Route path='/goal-update/:id'>
+        <Route path='/goal-update/:goalId'>
           <GoalUpdate />
         </Route>
         <Route exact path='/'>
           <div className="Home">
             <LoginButton />
-                <LogoutButton />
-                <Profile />
+            <LogoutButton />
+            <Profile />
             <ListWidgetContainer href="http://localhost:3001/api/stats/top" heading="All Users Goals" rowspan={3} />
             <NumberWidgetContainer href="http://localhost:3001/api/goals/open" heading="Active Goals" />
             <GraphWidgetContainer href="http://localhost:3001/api/goals/progression" heading="Goals Achieved Over Time" colspan={2} rowspan={2} />
@@ -72,9 +70,9 @@ function App() {
 
         </Route>
       </Router>
-      </UserContext.Provider>
-    </div>
-  );
+    </UserContext.Provider>
+  </div>
+);
 }
 
 export default App;
