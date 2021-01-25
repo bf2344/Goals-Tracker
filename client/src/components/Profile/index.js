@@ -9,9 +9,6 @@ const Profile = () => {
     emailVerified: false
   })
 
-  console.log(isAuthenticated)
-  console.log(user)
-
   // useEffect(()=>{
   //   // setUserData({
   //   //   name: user.name,

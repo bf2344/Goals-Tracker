@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { useParams, useHistory } from "react-router-dom";
 import { Form, FormGroup, Label, Input, FormText, Container, Row, Col, Button } from 'reactstrap';
 import './index.css';
 import GoalModal from '../../components/GoalModal';
+import UserContext from '../../utils/UserContext';
 
 const GoalCreation = () => {
   const [inputValues, setInputValues] = useState({
@@ -15,21 +16,20 @@ const GoalCreation = () => {
     highPriority: false,
     goalUpdates: []
   })
-  
-  const [showModal, setShowModal] = useState(false)
+  const { userId } = useParams();
   const history = useHistory()
+  const userInfo = useContext(UserContext)
+  const [showModal, setShowModal] = useState(false)
 
   const handleGoalSubmit = () => {
-    console.log("front end submit log")
-    fetch('/api/goal/add', {
-      method: 'POST',
+    fetch(`/api/user/${userId}/goal/add`, {
+      method: 'PUT',
       body: JSON.stringify(inputValues),
       headers: { 
         "Content-type": "application/json"
     } 
     }).then(res => {
       if(res){
-        // console.log(res.status === 200)
         setShowModal(true)
         setTimeout(() => {
           history.push('/')
@@ -39,13 +39,6 @@ const GoalCreation = () => {
       }
     })
   }
-
-  useEffect(()=>{
-    fetch('api/user/goal/get')
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
-  }, [])
 
   const handleInputChange = (name, value) => {
     setInputValues({ ...inputValues, [name]: value })
