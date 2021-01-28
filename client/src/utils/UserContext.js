@@ -1,11 +1,9 @@
 import React, { createContext } from 'react';
 
-const GoalContext = createContext({
+const UserContext = createContext({
   _id: '',
-  first: '',
-  last: '',
+  name: '',
   email: '',
-  _id: '',
   goals: [{
     _id: '',
     title: '',
@@ -23,4 +21,4 @@ const GoalContext = createContext({
   }]
 });
 
-export default GoalContext;
+export default UserContext;

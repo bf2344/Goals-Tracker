@@ -11,21 +11,26 @@ const GoalUpdate = () => {
     progress: 0,
     note: ""
   });
-  const { id } = useParams();
+  const { goalId } = useParams();
   const history = useHistory();
 
   useEffect(() => {
-    fetch(`/api/goal/get/${id}`)
-      .then(res => res.json()).then(data => setGoalData(data))
+    fetch(`/api/goal/get/${goalId}`)
+      .then(res => res.json()).then(data => {
+        setGoalData(data)
+        if(data.goalUpdates.length){
+          setUpdateData({...updateData, progress: data.goalUpdates[data.goalUpdates.length - 1].progress})
+        }
+      })
       .catch(err => console.log(err))
-  }, [id]);
+  }, [goalId]);
 
   const handleInputChange = (name, value) => {
     setUpdateData({ ...updateData, [name]: value });
   };
 
   const handleSubmit = () =>{
-    fetch(`/api/goal/update/${id}`, {
+    fetch(`/api/goal/${goalId}/update`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
