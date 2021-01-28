@@ -30,7 +30,7 @@ const GoalUpdate = () => {
   };
 
   const handleSubmit = () =>{
-    fetch(`/api/goal/${goalId}/update`, {
+    fetch(`/api/goal/update/${goalId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ const GoalUpdate = () => {
             {goalData &&
               <>
                 <p>{goalData.description}</p>
-                <p>Originally created on : {goalData.date}</p>
+                <p>Originally created on : {goalData.createdAt}</p>
               </>
             }
             <FormGroup row>

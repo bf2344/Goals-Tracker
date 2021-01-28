@@ -22,11 +22,12 @@ router.post('/add', (req, res) => {
 })
 
 router.put('/:id/goal/add', ({params, body}, res) =>{
+  console.log(body)
   Goals.create(body)
     .then(({ _id }) => User.findOneAndUpdate(
       {_id: params.id}, 
       {$push: { goals: _id }}, 
-      { new: true}
+      {new: true}
       ))
         .then(response => res.status(200).json(response))
         .catch(err => console.log(err))

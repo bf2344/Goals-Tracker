@@ -14,8 +14,6 @@ class ListWidget extends Component {
       if(this.props.listItems){
         let sortedItems = this.props.listItems.slice();
         return sortedItems.sort((a, b) => {
-          console.log(a.goalUpdates[a.goalUpdates.length - 1].progress)
-          console.log(b.goalUpdates[b.goalUpdates.length - 1].progress)
             if ((a.goalUpdates.length ? a.goalUpdates[a.goalUpdates.length - 1].progress : 0) > (b.goalUpdates.length ? b.goalUpdates[b.goalUpdates.length - 1].progress : 0)) {
                 return -1;
             } else if ((a.goalUpdates.length ? a.goalUpdates[a.goalUpdates.length - 1].progress : 0) < (b.goalUpdates.length ? b.goalUpdates[b.goalUpdates.length - 1].progress : 0)) {
@@ -48,7 +46,7 @@ class ListWidget extends Component {
         return (
             <ListDisplay>
                 {/* Add a ListItem for each piece of data */}
-                {sortedItems.map((item, index) => <ListItem key={item.label} label={item.title} value={item.goalUpdates[item.goalUpdates.length - 1].progress} min={min} max={max} />)}
+                {sortedItems.map((item, index) => <ListItem key={item.label} label={item.title} value={item.goalUpdates.length ? item.goalUpdates[item.goalUpdates.length - 1].progress : 0} min={min} max={max} />)}
             </ListDisplay>
         );
     }

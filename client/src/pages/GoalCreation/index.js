@@ -9,7 +9,7 @@ const GoalCreation = () => {
   const [inputValues, setInputValues] = useState({
     title: '',
     description: '',
-    date: () => new Date(),
+    completionDate: '',
     color: '',
     popular: '',
     upload: '',
