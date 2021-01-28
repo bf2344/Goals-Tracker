@@ -47,7 +47,7 @@ function App() {
     <div className="App">
       <UserContext.Provider value={userData}>
         <Router>
-          <Route path='/goal-creation'>
+          <Route path='/goal-creation/:id'>
             <GoalCreation />
           </Route>
           <Route path='/goal-update/:id'>

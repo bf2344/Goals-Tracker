@@ -24,7 +24,7 @@ router.post('/add', ({ body }, res) => {
 })
 
 
-router.put('/goal/update/:id', ({ params, body }, res) => {
+router.put('/update/:id', ({ params, body }, res) => {
   GoalUpdates.create(body)
     .then(({ _id }) => Goals.findOneAndUpdate({_id: params.id},
     { $push: { goalUpdates: _id } },

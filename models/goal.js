@@ -2,15 +2,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const GoalsModel = new Schema({
+  createdAt: {
+    type: Date,
+    default: ()=> new Date()
+  },
   title: {
     type: String
   },
   description: {
     type: String
   },
-  date: {
+  completionDate: {
     type: Date,
-    default: ()=> new Date()
   },
   color: {
     type: String,
