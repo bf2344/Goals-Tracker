@@ -47,10 +47,10 @@ function App() {
     <div className="App">
       <UserContext.Provider value={userData}>
         <Router>
-          <Route path='/goal-creation/:id'>
+          <Route path='/goal-creation/:userId'>
             <GoalCreation />
           </Route>
-          <Route path='/goal-update/:id'>
+          <Route path='/goal-update/:goalId'>
             <GoalUpdate />
           </Route>
           <Route exact path='/'>
