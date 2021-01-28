@@ -2,9 +2,14 @@ const router = require('express').Router();
 const { User, Goals } = require('../../models');
 
 router.get('/:email', ({params}, res) => {
-  User.find({ email: params.email})
-    .populate('goals')
-    .populate('goalUpdates')
+  User.findOne({ email: params.email})
+    .populate({
+      path: 'goals',
+      populate: {
+        path: 'goalUpdates',
+        model: "GoalUpdates"
+      }
+    })
     .then(data => res.status(200).json(data))
     .catch(err => console.log(err))
 })

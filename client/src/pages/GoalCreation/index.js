@@ -80,7 +80,7 @@ const GoalCreation = () => {
               <Label for="exampleDate">Goal End Date</Label>
               <Input
                 type="date"
-                name="date"
+                name="completionDate"
                 id="exampleDate"
                 placeholder="date placeholder"
                 onChange={(e) => handleInputChange(e.currentTarget.name, e.currentTarget.value)}

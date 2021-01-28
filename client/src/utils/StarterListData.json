@@ -1,0 +1,31 @@
+[
+  {
+    "_id": 69,
+    "highPriority": false,
+    "color": "#5C5F58",
+    "title": "Before user logs in",
+    "description": "Description about the goal before the user logs in",
+    "date": "2021-01-01T00:00:00.000Z",
+    "popular": "Health/Fitness",
+    "goalUpdates": [
+      {
+        "_id": 6969,
+        "progress": 7,
+        "note": "first update of first test goal",
+        "updatedAt": "2021-01-23T03:55:59.136Z"
+      },
+      {
+        "_id": 6970,
+        "progress": 23,
+        "note": "Second update of first test goal",
+        "updatedAt": "2021-01-23T03:55:59.136Z"
+      },
+      {
+        "_id": 6971,
+        "progress": 52,
+        "note": "Third update of first test goal",
+        "updatedAt": "2021-01-23T03:55:59.136Z"
+      }
+    ]
+  }
+]
