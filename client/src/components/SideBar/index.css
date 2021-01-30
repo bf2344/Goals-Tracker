@@ -63,3 +63,7 @@
   .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
   }
+
+a {
+  margin: 10px;
+}
