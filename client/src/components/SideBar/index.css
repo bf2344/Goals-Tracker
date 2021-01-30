@@ -8,7 +8,7 @@
   
   /* Color/shape of burger icon bars */
   .bm-burger-bars {
-    background: #373a47;
+    background: #ffffff;
   }
   
   /* Color/shape of burger icon bars on hover*/
@@ -38,14 +38,14 @@
   
   /* General sidebar styles */
   .bm-menu {
-    background: #373a47;
+    background: #34495E;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
   }
   
   /* Morph shape necessary with bubble or elastic */
   .bm-morph-shape {
-    fill: #373a47;
+    fill: #34495E;
   }
   
   /* Wrapper for item list */
