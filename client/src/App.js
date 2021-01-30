@@ -7,6 +7,7 @@ import GraphWidgetContainer from './components/GraphWidgetContainer';
 import LoginButton from "./components/LoginButton"
 import LogoutButton from "./components/LogoutButton"
 import Profile from "./components/Profile"
+import SideBar from "./components/SideBar"
 import GoalCreation from './pages/GoalCreation';
 import GoalUpdate from './pages/GoalUpdate';
 import UserContext from './utils/UserContext';
@@ -24,7 +25,6 @@ function App() {
         .then(data => setUserData(data))
         .then(() => {
           if (!userData.length) {
-            console.log("fuck you")
             postData()
           }
         })
@@ -45,6 +45,7 @@ function App() {
 
   return (
     <div className="App">
+      <SideBar/>
       <UserContext.Provider value={userData}>
         <Router>
           <Route path='/goal-creation/:userId'>
@@ -55,9 +56,6 @@ function App() {
           </Route>
           <Route exact path='/'>
             <div className="Home">
-              <LoginButton />
-              <LogoutButton />
-              <Profile />
                 <ListWidgetContainer userGoals={userData ? userData.goals : StarterListData} heading="All Users Goals" rowspan={3} />
                 {/* <ListWidgetContainer userGoals={userData ? userData.goals : starterListData} href="http://localhost:3001/api/stats/top" heading="All Users Goals" rowspan={3} /> */}
               <NumberWidgetContainer href="http://localhost:3001/api/goals/open" heading="Active Goals" />
