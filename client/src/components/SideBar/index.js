@@ -15,7 +15,7 @@ const SideBar = () => {
         <a id="profile" className="menu-item" href="/"><Profile/></a>
         <a id="home" className="menu-item" href="/"><LoginButton/></a>
         <a id="about" className="menu-item" href="/about"><LogoutButton/></a>
-        <a id="contact" className="menu-item" href="/contact">Something Else</a>
+        <a id="contact" className="menu-item" href="/goal-creation/:userId">Add a Goal</a>
         <a className="menu-item--small" href="">Something Else</a>
       </Menu>
     );
