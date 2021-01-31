@@ -16,7 +16,7 @@ class NumberDisplay extends Component {
         return (
             <div className="NumberDisplay">
                 <span className="value">
-                    {this.props.value}
+                    {this.props.value.length}
                 </span>
 
                 {max}
