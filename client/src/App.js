@@ -46,8 +46,8 @@ function App() {
 
   return (
     <div className="App">
-      <SideBar />
       <UserContext.Provider value={userData}>
+      <SideBar />
         <Router>
           <Route path='/goal-creation/:userId'>
             <GoalCreation />
